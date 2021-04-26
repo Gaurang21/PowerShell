@@ -32,3 +32,25 @@ foreach ($proc in $largeProcess) {
     Write-Host "$proc"
 }
 ```
+
+* Web Request to Powershell Reddit to get top 10 posts.
+
+```PowerShell
+$webResult = Invoke-WebRequest -Uri 'https://reddit.com/r/powershell.json'
+$rawData = $webResult.Content | ConvertFrom-Json
+$posts = $rawData.data.children.data
+$top = $posts | Select-Object Title,Score | Sort-Object Score -Descending | Select-Object -First 10   
+
+foreach($post in $top)
+{
+    Write-Host "$post"
+}
+```
+
+*API call
+
+```PowerShell
+[int]$num = Read-Host "Enter number of cats facts you would like:"
+$catData = Invoke-RestMethod -Uri "https://catfact.ninja/facts?limit=$num&max_length=140"
+$catData.data
+```
