@@ -19,3 +19,16 @@ else{
     Write-Host "Path does not exists on your system."
 }
 ```
+
+* Find large processes running on the system using Where-Object.
+
+```PowerShell
+$process = Get-Process
+$largeProcess = $process | Where-Object{$_.WorkingSet64 -gt 100MB} | Select-Object Name, CPU, WorkingSet64
+$largeProcessCount = $largeProcess.Length
+Write-Host "The no of large processes currently running are $largeProcessCount"
+Write-Host "Processes are:"
+foreach ($proc in $largeProcess) {
+    Write-Host "$proc"
+}
+```
