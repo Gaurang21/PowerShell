@@ -47,7 +47,7 @@ foreach($post in $top)
 }
 ```
 
-*API call
+* API call
 
 ```PowerShell
 [int]$num = Read-Host "Enter number of cats facts you would like:"
