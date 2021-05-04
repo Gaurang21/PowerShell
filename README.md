@@ -54,3 +54,16 @@ foreach($post in $top)
 $catData = Invoke-RestMethod -Uri "https://catfact.ninja/facts?limit=$num&max_length=140"
 $catData.data
 ```
+
+* Create a Profile in PowerShell
+
+```PowerShell
+#We can define any function in the profile script which will run whenever we open powershell.
+if(Test-Path $profile){
+    Write-Host "Profile already exists"
+}
+else{
+    Write-Host "Profile does not exist. Creating a new profile...."
+    New-Item -Path $profile -Type file -force
+}
+```
